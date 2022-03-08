@@ -76,16 +76,14 @@ public class CsvXmlJsonConverter {
 
                 if (currField.getNodeType() == Node.ELEMENT_NODE) {
 
-                    if (currField.getNodeName().equals("id")) {
-                        id = Long.parseLong(currField.getTextContent());
-                    } else if (currField.getNodeName().equals("firstName")) {
-                        firstName = currField.getTextContent();
-                    } else if (currField.getNodeName().equals("lastName")) {
-                        lastName = currField.getTextContent();
-                    } else if (currField.getNodeName().equals("country")) {
-                        country = currField.getTextContent();
-                    } else if (currField.getNodeName().equals("age")) {
-                        age = Integer.parseInt(currField.getTextContent());
+                    switch (currField.getNodeName()) {
+                        case "id" -> id = Long.parseLong(currField.getTextContent());
+                        case "firstName" -> firstName = currField.getTextContent();
+                        case "lastName" -> lastName = currField.getTextContent();
+                        case "country" -> country = currField.getTextContent();
+                        case "age" -> age = Integer.parseInt(currField.getTextContent());
+                        default -> {
+                        }
                     }
                 }
             }
